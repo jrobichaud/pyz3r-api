@@ -1,0 +1,2 @@
+pyz3r==6.0.5
+Flask[async]==2.2.3

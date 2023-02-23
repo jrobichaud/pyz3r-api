@@ -1,0 +1,55 @@
+[build-system]
+requires = ["setuptools ~= 58.0", "cython ~= 0.29.0"]
+
+[project]
+name = "pyz3r_api"
+description = "A flask app for pyz3r"
+version = "0.0.1"
+authors = [
+    { name="Jules Robichaud-Gagnon", email="j.robichaudg+pypi@gmail.com" },
+]
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "Flask",
+    "pyz3r",
+]
+
+[tool.setuptools.dynamic]
+version = { attr = "pyz3r_api.__version__" }
+
+[tool.setuptools.packages.find]
+include = [
+    "pyz3r_api",
+    "pyz3r_api.*",
+]
+
+[tool.black]
+line-length = 88
+target-version = ['py39', 'py310', 'py311']
+include = '\.pyi?$'
+exclude = '''
+  /(
+  \.git
+  | \.hg
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+  )/
+  '''
+
+[tool.pytest]
+testpaths = "tests"
+
+[coverage.run]
+branch = true
+source = [
+    "pyz3r_api"
+]
