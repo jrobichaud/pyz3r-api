@@ -26,6 +26,12 @@ def test_settings(client):
 
 
 @pytest.mark.asyncio
+def test_sprites(client):
+    response = client.get("/alttpr/sprites")
+    assert type(response.json) == list
+
+
+@pytest.mark.asyncio
 def test_generate(client):
     response = client.post(
         "/alttpr/generate",

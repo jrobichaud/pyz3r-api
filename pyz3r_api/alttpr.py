@@ -1,5 +1,6 @@
 import datetime
 
+import aiohttp
 import pyz3r
 from flask import Blueprint, request, current_app, make_response
 
@@ -12,6 +13,21 @@ async def get_settings():
     alttpr = pyz3r.alttpr.ALTTPR()
     randomizer_settings = await alttpr.randomizer_settings()
     return randomizer_settings
+
+
+@bp.route("/sprites")
+async def sprites():
+    alttpr = pyz3r.alttpr.ALTTPR()
+    async with aiohttp.request(
+        method="get",
+        url=alttpr.baseurl + "/sprites",
+        auth=alttpr.auth,
+        raise_for_status=True,
+    ) as resp:
+        result = await resp.json()
+    response = make_response(result)
+    response.cache_control.max_age = 3600
+    return response
 
 
 @bp.post("/daily")
