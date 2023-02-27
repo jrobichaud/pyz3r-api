@@ -52,7 +52,7 @@ async def generate():
     sprite = request.json.get("sprite", "Link")
     settings = request.json.get("settings")
     seed = await alttpr.generate(settings=settings)
-    name = f'alttpr {datetime.datetime.now(tz=datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")} {seed.hash}.sfc'
+    name = f'alttpr {datetime.datetime.now(tz=datetime.timezone.utc).strftime("%Y-%m-%d %H%M")} {seed.hash}.sfc'
     game = await seed.create_patched_game(
         current_app.config["ROM_PATH"], spritename=sprite
     )
