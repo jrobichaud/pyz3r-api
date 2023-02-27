@@ -38,7 +38,9 @@ async def daily():
     name = f"alttpr Daily {datetime.datetime.now(tz=datetime.timezone.utc).date().isoformat()} {daily_hash}.sfc"
     seed = await alttpr.retrieve(daily_hash)
     game = await seed.create_patched_game(
-        current_app.config["ROM_PATH"], spritename=sprite
+        current_app.config["ROM_PATH"],
+        spritename=sprite,
+        quickswap=True,
     )
     response = make_response(game.rom)
     response.headers.set("Content-Type", "application/octet-stream")
@@ -54,7 +56,9 @@ async def generate():
     seed = await alttpr.generate(settings=settings)
     name = f'alttpr {datetime.datetime.now(tz=datetime.timezone.utc).strftime("%Y-%m-%d %H%M")} {seed.hash}.sfc'
     game = await seed.create_patched_game(
-        current_app.config["ROM_PATH"], spritename=sprite
+        current_app.config["ROM_PATH"],
+        spritename=sprite,
+        quickswap=True,
     )
     response = make_response(game.rom)
     response.headers.set("Content-Type", "application/octet-stream")
