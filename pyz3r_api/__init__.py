@@ -1,4 +1,4 @@
-__version__ = (0, 0, 1)
+__version__ = (0, 0, 2)
 
 import os
 
@@ -21,10 +21,11 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    # a simple page that says hello
-
     from . import alttpr
+    from . import sm
 
     app.register_blueprint(alttpr.bp)
+
+    app.register_blueprint(sm.bp)
 
     return app

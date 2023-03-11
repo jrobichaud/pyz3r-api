@@ -11,6 +11,7 @@ def app():
         {
             "TESTING": True,
             "ROM_PATH": "../Zelda no Densetsu - Kamigami no Triforce (Japan).sfc",
+            "SM_ROM_PATH": "../Super Metroid (JU) [!].smc",
         }
     )
 
