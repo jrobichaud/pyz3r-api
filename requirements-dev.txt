@@ -2,5 +2,5 @@
 pre-commit==3.6.2
 black==24.2.0
 pytest==8.0.2
-pytest-asyncio==0.23.5
+pytest-asyncio==0.23.5.post1
 coverage==7.4.3
